@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import java.awt.geom.Point2D;
 
 public class Calculations {
-    //double height = Point2D.distance();
     static Logger logger = LogManager.getLogger();
 
     public double findSquare(double height, double radius) {

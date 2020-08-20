@@ -7,6 +7,7 @@ import by.restonov.shapes.factory.ShapeFactory;
 import by.restonov.shapes.parser.DataParser;
 import by.restonov.shapes.reader.DataReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ConeListCreator {
         List<String> dataForCones = new ArrayList<>();
         try {
             dataForCones = reader.readData(dataPath);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         for (int i = 0; i < dataForCones.size();) {

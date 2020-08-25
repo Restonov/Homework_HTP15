@@ -1,5 +1,6 @@
 package test.by.restonov.shapes.reader;
 
+import by.restonov.shapes.exception.DataReaderException;
 import by.restonov.shapes.reader.DataReader;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
@@ -23,8 +24,8 @@ public class DataReaderTest extends Assert {
         List<String> expected = testArray;
         List<String> actual = null;
         try {
-            actual = dataReader.readData("resources/data/conesData.txt");
-        } catch (Exception e) {
+            actual = dataReader.readData("resources/data/conesDataTest.txt");
+        } catch (DataReaderException e) {
             e.printStackTrace();
         }
         AssertJUnit.assertEquals(expected, actual);

@@ -1,7 +1,7 @@
 package by.restonov.shapes.factory;
 
-import by.restonov.shapes.entity.api.Shape;
+import by.restonov.shapes.entity.Shape;
 
 public interface ShapeFactory {
-    Shape createShape();
+    Shape createShape(String name, int id);
 }

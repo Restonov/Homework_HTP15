@@ -11,7 +11,7 @@ public class DataValidatorTest extends Assert {
     public void validateTestTrue() {
         DataValidator dataValidator = new DataValidator();
         boolean expected = true;
-        boolean actual = dataValidator.validate("5.0 2.0 5.0 6.0 3.0");
+        boolean actual = dataValidator.validateInputData("5.0 2.0 5.0 6.0 3.0");
         AssertJUnit.assertEquals(expected, actual);
     }
 
@@ -19,7 +19,7 @@ public class DataValidatorTest extends Assert {
     public void validateTestFalse() {
         DataValidator dataValidator = new DataValidator();
         boolean expected = false;
-        boolean actual = dataValidator.validate("5.0 2.0 5.0 6.0 -3.0");
+        boolean actual = dataValidator.validateInputData("5.0 2.0 5.0 6.0 -3.0");
         AssertJUnit.assertEquals(expected, actual);
     }
 }

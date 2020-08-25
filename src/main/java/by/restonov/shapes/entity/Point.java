@@ -1,7 +1,5 @@
 package by.restonov.shapes.entity;
 
-import java.util.Objects;
-
 public class Point {
     private double xCoord;
     private double yCoord;
@@ -35,20 +33,27 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return Double.compare(point.xCoord, xCoord) == 0 &&
-                Double.compare(point.yCoord, yCoord) == 0;
+        if (Double.compare(point.xCoord, xCoord) != 0) return false;
+        return Double.compare(point.yCoord, yCoord) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(xCoord, yCoord);
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(xCoord);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(yCoord);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Point{" +
-                "xCoord=" + xCoord +
-                ", yCoord=" + yCoord +
-                '}';
+        final StringBuilder sb = new StringBuilder("Point{");
+        sb.append("xCoord=").append(xCoord);
+        sb.append(", yCoord=").append(yCoord);
+        sb.append('}');
+        return sb.toString();
     }
 }

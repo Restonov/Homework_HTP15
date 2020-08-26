@@ -2,6 +2,7 @@ package by.restonov.shapes.entity.impl;
 
 import by.restonov.shapes.entity.Point;
 import by.restonov.shapes.entity.Shape;
+import by.restonov.shapes.observer.VertexObserver;
 
 public class Cone implements Shape {
     private String name;
@@ -10,6 +11,7 @@ public class Cone implements Shape {
     private Point vertex;
     private double radius;
     private double height;
+    private VertexObserver observer = new VertexObserver();
 
     public Cone() {
     }
@@ -49,6 +51,7 @@ public class Cone implements Shape {
 
     public void setVertex(Point vertex) {
         this.vertex = vertex;
+        notifyObserver();
     }
 
     public double getRadius() {
@@ -65,6 +68,18 @@ public class Cone implements Shape {
 
     public double getHeight(){
         return height;
+    }
+
+    public void attach(VertexObserver observer) {
+        this.observer = observer;
+    }
+
+    public void detach(VertexObserver observer) {
+        this.observer = null;
+    }
+
+    private void notifyObserver() {
+        observer.actionPerformed(this);
     }
 
     @Override

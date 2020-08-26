@@ -2,37 +2,36 @@ package by.restonov.shapes.creator;
 
 import by.restonov.shapes.entity.Point;
 import by.restonov.shapes.entity.impl.Cone;
-import by.restonov.shapes.exception.DataReaderException;
 import by.restonov.shapes.factory.ShapeFactory;
-import by.restonov.shapes.factory.impl.ConeShapeFactory;
-import by.restonov.shapes.parser.DataParser;
-import by.restonov.shapes.reader.DataReader;
+import by.restonov.shapes.factory.impl.ConeFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConeListCreator {
+    private static final int BASE_CENTER_X = 0;
+    private static final int BASE_CENTER_Y = 1;
+    private static final int VERTEX_X = 2;
+    private static final int VERTEX_Y = 3;
+    private static final int RADIUS = 4;
 
-    public List<Cone> createConeList(final String dataPath) {
-        DataReader reader = new DataReader();
-        DataParser parser = new DataParser();
-        ShapeFactory factory = new ConeShapeFactory();
+    public List<Cone> createConeList(List<double[]> parsedData) {
+        ShapeFactory factory = new ConeFactory();
         ArrayList<Cone> cones = new ArrayList<>();
-        List<String> dataForCones = new ArrayList<>();
 
-        try {
-            dataForCones = reader.readData(dataPath);
-        } catch (DataReaderException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < dataForCones.size(); i++) {
-            String inputData = dataForCones.get(i);
-            double[] parsedData = parser.parseData(inputData);
+        for (int i = 0; i < parsedData.size(); i++) {
             Cone cone = (Cone) factory.createShape("Cone" + i, i);
+            double[] data = parsedData.get(i);
 
-            Point baseCenter = new Point(parsedData[0], parsedData[1]);
-            Point vertex = new Point(parsedData[2], parsedData[3]);
-            double radius = parsedData[4];
+            Point baseCenter = new Point();
+            baseCenter.setXCoord(data[BASE_CENTER_X]);
+            baseCenter.setYCoord(data[BASE_CENTER_Y]);
+
+            Point vertex = new Point();
+            vertex.setXCoord(data[VERTEX_X]);
+            vertex.setYCoord(data[VERTEX_Y]);
+
+            double radius = data[RADIUS];
 
             cone.setBaseCenter(baseCenter);
             cone.setVertex(vertex);

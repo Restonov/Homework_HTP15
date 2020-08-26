@@ -1,8 +1,9 @@
 package by.restonov.shapes.entity.impl;
 
 import by.restonov.shapes.entity.Point;
+import by.restonov.shapes.entity.Shape;
 
-public class TruncatedCone {
+public class TruncatedCone implements Shape {
     private String name;
     private int truncatedConeId;
     private Point bottomBaseCenter;
@@ -27,12 +28,12 @@ public class TruncatedCone {
         this.name = name;
     }
 
-    public int getTruncatedConeId() {
+    public int getId() {
         return truncatedConeId;
     }
 
-    public void setTruncatedConeId(int truncatedConeId) {
-        this.truncatedConeId = truncatedConeId;
+    public void setId(int id) {
+        this.truncatedConeId = id;
     }
 
     public Point getBottomBaseCenter() {

@@ -1,16 +1,22 @@
 package by.restonov.shapes.parser;
 
-public class DataParser {
-    private static final String REGEX_DELIMITER = " ";
-    private static final int INPUT_DATA_AMOUNT = 5;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
-    public double[] parseData (String dataString) {
-        double[] parsed = new double[INPUT_DATA_AMOUNT];
-        String[] splitted = dataString.split(REGEX_DELIMITER);
-        for (int i = 0; i < splitted.length; i++) {
-            double data = Double.parseDouble(splitted[i]);
-            parsed[i] = data;
+public class DataParser {
+    private static final String DATA_DELIMITER = " ";
+
+    public List<double[]> parseData(List<String> dataList) {
+        List<double[]> parsedData = new ArrayList<>();
+
+        for (String data : dataList) {
+            String[] splittedData = data.split(DATA_DELIMITER);
+
+            double[] parsedDataPart;
+            parsedDataPart = Stream.of(splittedData).mapToDouble(Double::parseDouble).toArray();
+            parsedData.add(parsedDataPart);
         }
-        return parsed;
+        return parsedData;
     }
 }

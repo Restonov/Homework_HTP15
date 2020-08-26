@@ -4,6 +4,7 @@ import by.restonov.shapes.exception.DataReaderException;
 import by.restonov.shapes.reader.DataReader;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -11,20 +12,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataReaderTest extends Assert {
-    List<String> testArray = new ArrayList<>();
+    List<String> testArray;
+    DataReader dataReader;
 
     @BeforeTest
-    public void setUpTestArray (){
+    public void setUp() {
+        testArray = new ArrayList<>();
         testArray.add("5.0 2.0 5.0 6.0 3.0");
+
+        dataReader = new DataReader();
+    }
+
+    @AfterTest
+    public void tierDown() {
+        testArray = null;
+        dataReader = null;
     }
 
     @Test
-    public void readDataTestTrue() {
-        DataReader dataReader = new DataReader();
+    public void readDataTest() {
         List<String> expected = testArray;
         List<String> actual = null;
         try {
-            actual = dataReader.readData("resources/data/conesDataTest.txt");
+            actual = dataReader.readData("rsources/data/conesDataTest.txt");
         } catch (DataReaderException e) {
             e.printStackTrace();
         }

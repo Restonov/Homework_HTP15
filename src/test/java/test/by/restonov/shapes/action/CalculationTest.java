@@ -6,16 +6,21 @@ import by.restonov.shapes.entity.impl.Cone;
 import by.restonov.shapes.entity.impl.TruncatedCone;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class CalculationTest extends Assert {
-    Calculation calculations = new Calculation();
-    Cone cone = new Cone();
-    TruncatedCone truncatedCone = new TruncatedCone();
+    Calculation calculations;
+    Cone cone;
+    TruncatedCone truncatedCone;
 
     @BeforeTest
-    public void setUpCone() {
+    public void setUp() {
+        calculations = new Calculation();
+        cone = new Cone();
+        truncatedCone = new TruncatedCone();
+
         cone.setBaseCenter(new Point(5.0, 2.0));
         cone.setVertex(new Point(5.0, 6.0));
         cone.setRadius(3.0);
@@ -26,6 +31,13 @@ public class CalculationTest extends Assert {
         truncatedCone.setHeight(5.0);
         truncatedCone.setBottomBaseCenter(new Point(5.0, 3.0));
         truncatedCone.setUpperBaseCenter(new Point(5.0, 8.0));
+    }
+
+    @AfterTest
+    public void tierDown() {
+        calculations = null;
+        cone = null;
+        truncatedCone = null;
     }
 
     @Test

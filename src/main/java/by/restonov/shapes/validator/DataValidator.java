@@ -9,8 +9,10 @@ public class DataValidator {
     public boolean validateInputData(String data) {
         boolean result = false;
         Matcher matcher = checkingDecimalNumber.matcher(data);
-            if (matcher.matches()) {
-                result = true;
-            } return result;
+        if (matcher.matches()) {
+            result = true;
+        }
+        return result;
     }
 }
+

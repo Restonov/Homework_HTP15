@@ -20,7 +20,7 @@ public class ConeListCreatorTest extends Assert {
 
     @BeforeTest
     public void setUp() {
-        testCone = new Cone("Cone0", 0);
+        testCone = new Cone("Cone0", 1);
         testCone.setBaseCenter(new Point(5.0, 2.0));
         testCone.setVertex(new Point(5.0, 6.0));
         testCone.setRadius(3.0);

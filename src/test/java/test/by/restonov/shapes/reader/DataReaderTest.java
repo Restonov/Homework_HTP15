@@ -30,14 +30,25 @@ public class DataReaderTest extends Assert {
     }
 
     @Test
-    public void readDataTest() {
+    public void readDataTestTrue() {
         List<String> expected = testArray;
+        List<String> actual = null;
+        try {
+            actual = dataReader.readData("src/main/resources/data/conesDataTest.txt");
+        } catch (DataReaderException e) {
+            e.printStackTrace();
+        }
+        AssertJUnit.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void readDataTestFalse() {
         List<String> actual = null;
         try {
             actual = dataReader.readData("rsources/data/conesDataTest.txt");
         } catch (DataReaderException e) {
             e.printStackTrace();
         }
-        AssertJUnit.assertEquals(expected, actual);
+        AssertJUnit.assertNull(actual);
     }
 }

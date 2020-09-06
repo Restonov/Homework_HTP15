@@ -1,6 +1,7 @@
 package by.restonov.shapes.action;
 
 import by.restonov.shapes.entity.Point;
+import by.restonov.shapes.entity.Shape;
 import by.restonov.shapes.entity.impl.Cone;
 import by.restonov.shapes.entity.impl.TruncatedCone;
 
@@ -57,5 +58,16 @@ public class Calculation {
         Point baseCenter = cone.getBaseCenter();
         double baseCenterYCoord = baseCenter.getYCoord();
         return baseCenterYCoord == 0.0;
+    }
+
+    public boolean checkIsShapeACone(Shape shape) {
+        boolean flag = false;
+        Point baseCenter = shape.getBaseCenter();
+        Point vertex = shape.getVertex();
+        double radius = shape.getRadius();
+        if (baseCenter != null && vertex != null && radius != 0.0) {
+            flag = true;
+        }
+        return flag;
     }
 }

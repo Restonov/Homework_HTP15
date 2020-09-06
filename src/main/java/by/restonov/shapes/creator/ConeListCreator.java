@@ -1,7 +1,9 @@
 package by.restonov.shapes.creator;
 
+import by.restonov.shapes.entity.IdGenerator;
 import by.restonov.shapes.entity.Point;
 import by.restonov.shapes.entity.impl.Cone;
+import by.restonov.shapes.factory.PointFactory;
 import by.restonov.shapes.factory.ShapeFactory;
 import by.restonov.shapes.factory.impl.ConeFactory;
 
@@ -16,26 +18,21 @@ public class ConeListCreator {
     private static final int RADIUS = 4;
 
     public List<Cone> createConeList(List<double[]> parsedData) {
-        ShapeFactory factory = new ConeFactory();
-        ArrayList<Cone> cones = new ArrayList<>();
+        PointFactory pointFactory = new PointFactory();
+        ShapeFactory shapeFactory = new ConeFactory();
+        List<Cone> cones = new ArrayList<>();
 
         for (int i = 0; i < parsedData.size(); i++) {
-            Cone cone = (Cone) factory.createShape("Cone" + i, i);
             double[] data = parsedData.get(i);
+            int id = IdGenerator.generateId();
 
-            Point baseCenter = new Point();
-            baseCenter.setXCoord(data[BASE_CENTER_X]);
-            baseCenter.setYCoord(data[BASE_CENTER_Y]);
-
-            Point vertex = new Point();
-            vertex.setXCoord(data[VERTEX_X]);
-            vertex.setYCoord(data[VERTEX_Y]);
-
+            Point baseCenter = pointFactory.createPoint(data[BASE_CENTER_X], data[BASE_CENTER_Y]);
+            Point vertex = pointFactory.createPoint(data[VERTEX_X], data[VERTEX_Y]);
             double radius = data[RADIUS];
 
-            cone.setBaseCenter(baseCenter);
-            cone.setVertex(vertex);
-            cone.setRadius(radius);
+            Cone cone = (Cone) shapeFactory.createShape(baseCenter, vertex, radius);
+            cone.setName("Cone" + i);
+            cone.setId(id);
 
             cones.add(cone);
         }

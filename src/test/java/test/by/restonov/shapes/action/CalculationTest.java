@@ -94,4 +94,10 @@ public class CalculationTest extends Assert {
         boolean actual = calculations.findIsBaseCenterOnXAxis(cone);
         AssertJUnit.assertTrue(actual);
     }
+
+    @Test
+    public void checkIsShapeAConeTestTrue() {
+        boolean actual = calculations.checkIsShapeACone(cone);
+        AssertJUnit.assertTrue(actual);
+    }
 }

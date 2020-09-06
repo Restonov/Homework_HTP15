@@ -1,6 +1,6 @@
 package by.restonov.shapes.repository;
 
-import by.restonov.shapes.comparator.BaseCenterXCoordComparator;
+import by.restonov.shapes.comparator.ConeComparator;
 import by.restonov.shapes.entity.impl.Cone;
 import by.restonov.shapes.specification.Specification;
 
@@ -12,10 +12,6 @@ public class ConeRepository {
     private static ConeRepository instance;
     private List<Cone> repository = new ArrayList<>();
 
-    public List<Cone> getRepository() {
-        return repository;
-    }
-
     private ConeRepository() {
     }
 
@@ -26,9 +22,9 @@ public class ConeRepository {
         return instance;
     }
 
-    public List<Cone> sort(List<Cone> coneList , BaseCenterXCoordComparator comparator) {
-        coneList.sort(comparator);
-        return coneList;
+    public List<Cone> sort(ConeComparator comparator) {
+        repository.sort(comparator);
+        return repository;
     }
 
     public List<Cone> query(Specification specification) {

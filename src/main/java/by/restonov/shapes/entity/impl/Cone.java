@@ -21,6 +21,12 @@ public class Cone implements Shape {
         this.coneId = id;
     }
 
+    public Cone(Point baseCenter, Point vertex, double radius) {
+        this.baseCenter = baseCenter;
+        this.vertex = vertex;
+        this.radius = radius;
+    }
+
     public String getName() {
         return name;
     }
